@@ -1,0 +1,13 @@
+php artisan cache:clear
+php artisan view:clear
+php artisan route:clear
+php artisan config:clear
+
+// Check app running environment
+php artisan env
+
+// Generate APP_KEY
+php artisan key:generate
+
+// User will not interact application
+php artisan down
