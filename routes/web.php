@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts/master');
-});
+// Route::get('/', function () {
+//     return view('layouts/master');
+// });
 
-// Route::get('/', )
+Route::get('/', [PagesController::class, 'home'])->name('home');
+Route::get('/post', [PostsController::class, 'show'])->name('posts.show');
