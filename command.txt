@@ -11,3 +11,9 @@ php artisan key:generate
 
 // User will not interact application
 php artisan down
+
+// All CSS and JavaScript assets will be compiled and placed in public directory:
+npm install
+npm run dev
+// If have change in these files, re-compile assets:
+npm run watch
