@@ -3,6 +3,20 @@ php artisan view:clear
 php artisan route:clear
 php artisan config:clear
 
+// Need to use when you deploy project into prod env
+
+// Optimizing Configuration Loading
+// 1. This command will combine all of Laravel's configuration files into a single, cached file, which greatly reduces the number of trips the framework must make to the filesystem when loading your configuration values.
+php artisan config:cache
+
+// Optimizing Route Loading
+// 2. This command reduces all of your route registrations into a single method call within a cached file, improving the performance of route registration when registering hundreds of routes.
+php artisan route:cache
+
+// Optimizing View Loading
+// 3. This command precompiles all your Blade views so they are not compiled on demand, improving the performance of each request that returns a view.
+php artisan view:cache
+
 // Check app running environment
 php artisan env
 
@@ -17,3 +31,16 @@ npm install
 npm run dev
 // If have change in these files, re-compile assets:
 npm run watch
+
+// List artisan command
+php artisan list make
+
+// Create migration
+php artisan migrate
+
+// Laravel Breeze is a minimal, simple implementation of all of Laravel's authentication features, including login, registration, password reset, email verification, and password confirmation. 
+// Laravel Breeze's view layer is made up of simple Blade templates styled with Tailwind CSS. Breeze provides a wonderful starting point for beginning a fresh Laravel application.
+composer require laravel/breeze --dev
+php artisan breeze:install
+npm install
+npm run dev
