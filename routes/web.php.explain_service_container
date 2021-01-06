@@ -1,0 +1,87 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+class Stadium {}
+
+class Football
+{
+    public function __construct(Stadium $stadium)
+    {
+        $this->stadium = $stadium;
+    }
+}
+
+class Game 
+{
+    public function __construct(Football $football)
+    {
+        $this->football = $football;
+    }
+}
+
+// app()->bind('Game', function(){
+//     // return 'Football';
+//     return new Game(new Football(new Stadium));
+// });
+/**
+ * Thay vì dùng bind dẫn đến việc phức tạp khi các class có dependency injection
+ * Ta dùng resolve function hoặc make function. Bạn không cần phải bind bất cứ thứ gì vì nó sẽ bind mọi thử của riêng nó
+ */
+resolve('Game');
+
+/**
+ * giúp dùng duy nhất 1 instance được tạo tại thời điểm bind function được gọi
+ * hạn chế được tình trạng tạo ra nhiều instance vô tội vạ
+ */
+dump(app()->make('Game'));
+/**
+ * Bạn cũng có thể tạo ra những instance mỗi khi muốn sử dụng
+ * Giúp cho việc ta không cần phải thêm các dependency injection khi tạo instance
+ */
+app()->instance('Naruto', function(){
+    return 'Ninja';
+});
+
+/**
+ * Khi ta dùng bind thì khi gọi make sẽ execute $resolver nên sẽ được 2 random khác nhau
+ * Nếu muốn dùng 1 random duy nhất ta dùng singleton
+ */
+app()->bind('random', function(){
+    return Str::random();
+});
+
+dump(app()->make('random'));
+dump(app()->make('random'));
+
+app()->singleton('random1', function(){
+    return Str::random();
+});
+
+dump(app()->make('random1'));
+dd(app()->make('random1'));
+
+
+
+dd(app());
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
