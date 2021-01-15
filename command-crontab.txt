@@ -13,3 +13,11 @@ php artisan schedule:list
 
 // Create command cronjob
 php artisan make:command DemoCron --command=demo:cron
+
+// Run cronjob
+php artisan demo:cron
+
+// Starting The Scheduler
+// This Cron will call the Laravel command scheduler every minute. 
+// When the schedule:run command is executed, Laravel will evaluate your scheduled tasks and runs the tasks that are due.
+* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1

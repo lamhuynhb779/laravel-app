@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use DB;
+use Carbon\Carbon;
 
 class DemoCron extends Command
 {
@@ -38,7 +39,11 @@ class DemoCron extends Command
      */
     public function handle()
     {
-        DB::table('items')->insert(['name', 'hello new']);
+        DB::table('items')->insert([
+            'name' => 'hello new',
+            'created_at' => Carbon::now('Asia/Ho_Chi_Minh'),
+            'updated_at' => Carbon::now('Asia/Ho_Chi_Minh'),
+        ]);
         $this->info('Demo:Cron Command Run successfully!');
         // return 0;
     }

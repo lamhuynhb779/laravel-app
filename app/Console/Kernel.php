@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         // This place is to declare command class will be used
-        Commands\Inspire::class,
+        //Commands\Inspire::class,
         Commands\DemoCron::class,
     ];
 
@@ -62,8 +62,8 @@ class Kernel extends ConsoleKernel
          */ 
         // $schedule->command(SendEmailsCommand::class, ['Taylor', '--force'])->daily();
 
-        $schedule->command('inspire')->hourly();
-        $schedule->command('demo:cron')->everyMinute();
+        //$schedule->command('inspire')->hourly();
+        $schedule->command('demo:cron')->timezone('Asia/Ho_Chi_Minh')->everyMinute();
 
     }
 
