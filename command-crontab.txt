@@ -21,3 +21,11 @@ php artisan demo:cron
 // This Cron will call the Laravel command scheduler every minute. 
 // When the schedule:run command is executed, Laravel will evaluate your scheduled tasks and runs the tasks that are due.
 * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+
+// SET CRONTAB ON SERVER
+Step 1: run schedule
+$ php artisan schedule:run
+Step 2: ssh into your server, get inside your project with cd laravel-project-name and run the following command
+$ crontab -e
+Step 3: write to file
+* * * * * cd /your-project-path && php artisan schedule:run >> /dev/null 2>&1
