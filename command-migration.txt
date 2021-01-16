@@ -1,0 +1,13 @@
+*** Migration commands
+
+// Create migration for table posts
+php artisan make:migration create_table_posts_table --create=posts
+
+// Create table posts
+php artisan migrate
+
+// Update column `status` for existing posts table
+php artisan make:migration add_attribute_status_into_posts_table --table=posts
+
+// If have error: `Class not found`
+composer dump-autoload
