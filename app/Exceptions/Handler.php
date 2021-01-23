@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Auth\AuthenticationException;
 
 class Handler extends ExceptionHandler
 {
@@ -36,5 +38,46 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Throwable  $exception
+     * @return \Illuminate\Http\Response
+     */
+    public function render($request, Throwable $exception) 
+    {
+        if ($exception instanceof ModelNotFoundException && $request->wantsJson()) { // the API requests will need the header `Accept: application/json`
+            return response()->json([
+                'error' => 'Resource not found'
+            ], 404);
+        }
+        return parent::render($request, $exception);
+    }
+
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Exception  $exception
+     * @return \Illuminate\Http\Response
+     */
+    // public function render($request, Exception $exception)
+    // {
+    //     if ($this->isHttpException($exception)) {
+    //         if ($exception->getStatusCode() == 404) {
+    //             return response()->view('errors' . '404', [], 404);
+    //         }
+    //     }
+    //     return parent::render($request, $exception);
+    // }
+    
+    protected function unauthenticated($request, AuthenticationException $exception) 
+    {
+        return $request->expectsJson()
+                ? response()->json(['message' => $exception->getMessage()], 401)
+                : redirect()->guest(route('login'));
     }
 }
