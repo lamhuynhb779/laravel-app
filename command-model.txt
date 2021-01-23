@@ -1,0 +1,11 @@
+// Create model (-m option is short for --migration)
+$ php artisan make:model Article -m
+
+// Create table
+$ php artisan migrate
+
+// Database seeding (Faker library)
+$ php artisan make:seeder ArticlesTableSeeder
+
+// Run seed command
+$ php artisan db:seed --class=ArticlesTableSeeder
