@@ -1,0 +1,9 @@
+1/ Stored procedure làm tăng khả năng thực thi của ứng dụng. 
+Sau khi được tạo, stored procedure sẽ được biên dịch và lưu trữ ngay trong database. 
+Lẽ dĩ nhiên, nó sẽ chạy nhanh hơn là một lệnh sql chưa compile được gọi trực tiếp từ ứng dụng.
+
+2/ Stored procedure làm giảm lưu lượng thông tin giao tiếp giữa ứng dụng và database server, 
+thay vì gởi những câu lệnh sql chưa complile dài lằng ngoằn, ứng dụng chỉ việc gởi tên của 
+stored procedure và lấy lại kết quả.
+
+3/ Stored procedure có thể được tái sử dụng và chuyển sang bất cứ ứng dụng nào muốn sử dụng chúng...
