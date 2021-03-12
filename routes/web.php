@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\TestJobsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +27,10 @@ Route::get('/dashboard', function () {
 Route::get('/pages', [PagesController::class, 'getUsers']);
 Route::get('/pages/{name}', [PagesController::class, 'getUsers']);
 // Define route for testing call procedure [END]
+
+// Test job route [START]
+Route::get('/testjob', [TestJobsController::class, 'index']);
+Route::get('/testjob/user', [TestJobsController::class, 'logUser']);
+// Test job route [END]
 
 require __DIR__.'/auth.php';

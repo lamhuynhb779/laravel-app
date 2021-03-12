@@ -1,0 +1,15 @@
+// Create table jobs to save queued job 
+php artisan queue:table
+php artisan migrate
+
+// Create job
+php artisan make:job <job-name>
+
+// Clear config
+php artisan config:clear
+
+// execute job in database queue jobs 
+php artisan queue:work database --queue=<queue-name>
+
+// listen queue process
+php artisan queue:listen database --queue=write_log_file,default
