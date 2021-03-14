@@ -32,6 +32,7 @@ Route::get('/pages/{name}', [PagesController::class, 'getUsers']);
 // Test job route [START]
 Route::get('/testjob', [TestJobsController::class, 'index']);
 Route::get('/testjob/user', [TestJobsController::class, 'logUser']);
+Route::get('/testjob/beanstalkd', [TestJobsController::class, 'beanstalkd']);
 // Test job route [END]
 
 // Events Listeners [START]
