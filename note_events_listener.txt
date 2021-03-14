@@ -1,0 +1,8 @@
+// Create folder app/Events vs app/Listeners
+php artisan event:generate
+
+// Create event
+php artisan make:event OrderShoppingCart
+
+// Create Listener for listening event OrderShoppingCart
+php artisan make:listener SendMailConfirmShoppingCart --event=OrderShoppingCart

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TestJobsController;
+use App\Http\Controllers\OrdersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,9 @@ Route::get('/pages/{name}', [PagesController::class, 'getUsers']);
 Route::get('/testjob', [TestJobsController::class, 'index']);
 Route::get('/testjob/user', [TestJobsController::class, 'logUser']);
 // Test job route [END]
+
+// Events Listeners [START]
+Route::get('/order/{id}', [OrdersController::class, 'ship']);
+// Events Listeners [END]
 
 require __DIR__.'/auth.php';
