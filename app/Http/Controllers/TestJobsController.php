@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\TestLog;
+use App\Jobs\FindFavoriteOS;
 use Carbon\Carbon;
 
 class TestJobsController extends Controller 
@@ -26,5 +27,15 @@ class TestJobsController extends Controller
         $job = new TestLog(\Auth::user());
         dispatch($job);
         return view('testJobs/log_user');
+    }
+
+    public function beanstalkd()
+    {
+        for ($i = 0; $i < 50; $i++) {
+            FindFavoriteOS::dispatch();
+        }
+        return view('testJobs/beanstalkd', [
+            'data' => '50 Jobs dispatched!',
+        ]);
     }
 }
