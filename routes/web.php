@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TestJobsController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\PostsController;
 
 /*
@@ -40,6 +41,10 @@ Route::get('/testjob/beanstalkd', [TestJobsController::class, 'beanstalkd']);
 Route::get('/order/{id}', [OrdersController::class, 'ship']);
 // Events Listeners [END]
 
+// Intervention Image: processing image [START]
+Route::get('/upload-image', [UploadController::class, 'getUploadForm']);
+Route::post('/upload-image', [UploadController::class, 'postUploadForm']);
+// Intervention Image: processing image [END]
 
 // Transformer [START]
 Route::get('/post', [PostsController::class, 'getPost']);
