@@ -175,7 +175,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        // Intervention Image: processing image [START]
+        Intervention\Image\ImageServiceProvider::class,
+        // Intervention Image: processing image [END]
     ],
 
     /*
@@ -227,6 +229,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        // Intervention Image: processing image [START]
+        'Image' => \Intervention\Image\Facades\Image::class,
+        // Intervention Image: processing image [END]
 
     ],
 
