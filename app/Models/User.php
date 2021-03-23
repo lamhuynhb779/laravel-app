@@ -47,4 +47,9 @@ class User extends Authenticatable
         $this->save();
         return $this->api_token;
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
