@@ -1,0 +1,16 @@
+docker-compose up -d
+docker-compose down
+
+docker exec -it <container-id-of-app> /bash
+
+cd /var/www/html
+
+composer update
+
+# Config DB
+DB_CONNECTION=mysql
+DB_HOST=db
+DB_PORT=3306
+DB_DATABASE=laraveldb
+DB_USERNAME=root
+DB_PASSWORD=
