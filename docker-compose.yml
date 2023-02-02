@@ -18,3 +18,4 @@ services:
       - "8080:80"
     volumes:
       - ./:/var/www/html
+      - /var/www/html/laravel-app-logs:/var/www/html/storage/logs
