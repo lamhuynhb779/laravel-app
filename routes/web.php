@@ -38,7 +38,8 @@ Route::get('/testjob/beanstalkd', [TestJobsController::class, 'beanstalkd']);
 // Test job route [END]
 
 // Events Listeners [START]
-Route::get('/order/{id}', [OrdersController::class, 'ship']);
+Route::get('/orders/{id}', [OrdersController::class, 'ship']);
+Route::post('/orders', [OrdersController::class, 'store']);
 // Events Listeners [END]
 
 // Intervention Image: processing image [START]

@@ -10,12 +10,11 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class TestLog implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    protected $user;
 
     /**
      * Create a new job instance.
@@ -36,9 +35,9 @@ class TestLog implements ShouldQueue
     public function handle()
     {
         //
-        \Log::info('Hello world!!!');
+        Log::info('Hello world!!!');
         if ($this->user) {
-            \Log::info($this->user);
+            Log::info($this->user);
         }
     }
 }
