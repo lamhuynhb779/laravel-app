@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
             — — — — — —
             Sql: $query->sql
             Bindings: $bindings
-            Time: $query->time
+            Time: $query->time milliseconds
             File: ${location['file']}
             Line: ${location['line']}
             — — — — — —

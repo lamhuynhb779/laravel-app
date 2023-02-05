@@ -12,7 +12,7 @@ class PostsController extends Controller {
 
     function __construct(PostTransformer $postTransformer)
     {
-        $this->postTransformer = $postTransformer;        
+        $this->postTransformer = $postTransformer;
     }
 
     public function show() {
