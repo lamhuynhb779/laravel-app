@@ -51,4 +51,6 @@ Route::post('/upload-image', [UploadController::class, 'postUploadForm']);
 Route::get('/post', [PostsController::class, 'getPost']);
 // Transformer [END]
 
+Route::get('/test-pipeline', [\App\Http\Controllers\TeamController::class, 'index']);
+
 require __DIR__.'/auth.php';
