@@ -36,7 +36,11 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            //
+            // Report to Sentry
+            if (app()->bound('sentry')) {
+                app('sentry')->captureException($e);
+//                \Sentry\Laravel\Integration::captureUnhandledException($e);
+            }
         });
     }
 
@@ -47,7 +51,7 @@ class Handler extends ExceptionHandler
      * @param  \Throwable  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Throwable $exception) 
+    public function render($request, Throwable $exception)
     {
         if ($exception instanceof ModelNotFoundException && $request->wantsJson()) { // the API requests will need the header `Accept: application/json`
             return response()->json([
@@ -73,8 +77,8 @@ class Handler extends ExceptionHandler
     //     }
     //     return parent::render($request, $exception);
     // }
-    
-    protected function unauthenticated($request, AuthenticationException $exception) 
+
+    protected function unauthenticated($request, AuthenticationException $exception)
     {
         return $request->expectsJson()
                 ? response()->json(['message' => $exception->getMessage()], 401)

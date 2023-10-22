@@ -51,4 +51,8 @@ Route::post('/upload-image', [UploadController::class, 'postUploadForm']);
 Route::get('/post', [PostsController::class, 'getPost']);
 // Transformer [END]
 
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
+
 require __DIR__.'/auth.php';
