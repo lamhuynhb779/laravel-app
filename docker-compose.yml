@@ -9,6 +9,15 @@ services:
       MYSQL_DATABASE: 'laraveldb'
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
       MYSQL_PASSWORD: ''
+  db-telescope:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - "3305:3306"
+    environment:
+      MYSQL_DATABASE: 'telescope'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_PASSWORD: ''
   app:
     build:
       context: .
