@@ -16,6 +16,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        if ($this->app->environment('local')) {
+            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
+            $this->app->register(TelescopeServiceProvider::class);
+        }
     }
 
     /**
@@ -28,16 +32,18 @@ class AppServiceProvider extends ServiceProvider
         // Tracking query gets executed
         DB::listen(function ($query) {
             $location = collect(debug_backtrace())->filter(function ($trace) {
-                return !str_contains($trace['file'], 'vendor/');
+                return isset($trace['file']) && !str_contains($trace['file'], 'vendor/');
             })->first(); // grab the first element of non vendor/ calls
             $bindings = implode(',', $query->bindings); // format the bindings as string
+            $file = $location['file'] ?? '';
+            $line = $location['line'] ?? '';
             Log::info("
             — — — — — —
             Sql: $query->sql
             Bindings: $bindings
             Time: $query->time milliseconds
-            File: ${location['file']}
-            Line: ${location['line']}
+            File: $file
+            Line: $line
             — — — — — —
             ");
         });

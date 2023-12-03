@@ -175,6 +175,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\TelescopeServiceProvider::class,
         // Intervention Image: processing image [START]
         Intervention\Image\ImageServiceProvider::class,
         // Intervention Image: processing image [END]
