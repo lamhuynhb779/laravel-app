@@ -51,4 +51,9 @@ Route::post('/upload-image', [UploadController::class, 'postUploadForm']);
 Route::get('/post', [PostsController::class, 'getPost']);
 // Transformer [END]
 
+Route::group(['prefix' => 'session'], function () {
+    Route::get('', [\App\Http\Controllers\SessionController::class, 'index']);
+    Route::post('', [\App\Http\Controllers\SessionController::class, 'store']);
+});
+
 require __DIR__.'/auth.php';
