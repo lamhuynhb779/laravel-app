@@ -48,7 +48,8 @@ Route::post('/upload-image', [UploadController::class, 'postUploadForm']);
 // Intervention Image: processing image [END]
 
 // Transformer [START]
-Route::get('/post', [PostsController::class, 'getPost']);
+Route::get('/post', [PostsController::class, 'getPost'])
+    ->middleware('gzip.response');
 // Transformer [END]
 
 require __DIR__.'/auth.php';

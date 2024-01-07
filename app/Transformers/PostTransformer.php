@@ -12,25 +12,25 @@ class PostTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         //
     ];
-    
+
     /**
      * List of resources possible to include
      *
      * @var array
      */
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         //
     ];
-    
+
     /**
      * A Fractal transformer.
      *
      * @return array
      */
-    public function transform(Post $post)
+    public function transform(Post $post): array
     {
         return [
             'id' => $post->id,
