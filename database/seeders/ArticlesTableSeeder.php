@@ -18,7 +18,7 @@ class ArticlesTableSeeder extends Seeder
         // Let's truncate our existing records to start from scratch.
         Article::truncate();
 
-        for ($i=0; $i < 50; $i++) { 
+        for ($i=0; $i < 50; $i++) {
             Article::create([
                 'title' => Str::random(10),
                 'body' => Str::random(50),
