@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrdersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 // use App\Models\Article;
@@ -25,7 +26,7 @@ Route::middleware('auth:api')->get('/user', function(Request $request){
     return $request->user();
 });
 
-// This way we don’t have to set the middleware for each of the routes. It doesn’t save a lot of time 
+// This way we don’t have to set the middleware for each of the routes. It doesn’t save a lot of time
 // right now, but as the project grows it helps to keep the routes DRY.
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('articles', [ArticleController::class, 'index']); // Find all
@@ -33,6 +34,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('articles', [ArticleController::class, 'store']); // Create new
     Route::put('articles/{id}', [ArticleController::class, 'update']); // Update
     Route::delete('articles/{id}', [ArticleController::class, 'delete']); // Delete
+
+    Route::post('/orders', [OrdersController::class, 'store']);
 });
 
 Route::post('register', [RegistrationController::class, 'register']); // Customize own register controller

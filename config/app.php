@@ -178,6 +178,8 @@ return [
         // Intervention Image: processing image [START]
         Intervention\Image\ImageServiceProvider::class,
         // Intervention Image: processing image [END]
+
+        \App\Providers\RiakServiceProvider::class,
     ],
 
     /*

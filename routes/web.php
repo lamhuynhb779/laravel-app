@@ -51,4 +51,15 @@ Route::post('/upload-image', [UploadController::class, 'postUploadForm']);
 Route::get('/post', [PostsController::class, 'getPost']);
 // Transformer [END]
 
+Route::get('/get-voucher', [\App\Http\Controllers\VoucherController::class, 'getVoucher']);
+Route::get('/reset-voucher', [\App\Http\Controllers\VoucherController::class, 'reset']);
+
+Route::get('/redis-pubsub', function () {
+    $redis = new Redis();
+    $redis->connect('redis', '6379');
+    $redis->select(12);
+    $redis->setex('test', 5, 'ok');
+    return 'OK';
+});
+
 require __DIR__.'/auth.php';
