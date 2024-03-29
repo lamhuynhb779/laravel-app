@@ -62,4 +62,17 @@ Route::get('/redis-pubsub', function () {
     return 'OK';
 });
 
+// SubstituteBindings route sử dụng Eloquent model bindings, sẽ tự động thay thế paramete thành Eloquent model.
+Route::group(['prefix' => '/test-model-bindings'], function () {
+    Route::get('/pass', function () {
+
+        $user = \App\Models\User::query()->where('id', 1)->first();
+        return redirect()->route('pass_user', ['user' => $user]);
+    });
+
+    Route::get('/pass/{user}', function (\App\Models\User $user) {
+        return $user->email;
+    })->name('pass_user');
+});
+
 require __DIR__.'/auth.php';
