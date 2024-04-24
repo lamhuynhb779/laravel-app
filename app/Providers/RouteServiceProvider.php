@@ -47,6 +47,10 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
+
+        // Global Constraints
+        // Luon phai thoa dieu kien
+//        Route::pattern('id', '[0-9]+');
     }
 
     /**

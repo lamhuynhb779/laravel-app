@@ -44,5 +44,17 @@ class AppServiceProvider extends ServiceProvider
 //            — — — — — —
 //            ");
 //        });
+
+//        $this->checkDatabaseConnection();
+    }
+
+    private function checkDatabaseConnection() {
+        try {
+            DB::connection()->getPDO();
+            Log::info("Database connected: ".DB::connection()->getDatabaseName());
+        }
+        catch (\Exception $e) {
+            Log::info('Database connected: '.'None');
+        }
     }
 }
