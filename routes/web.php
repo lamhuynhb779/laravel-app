@@ -75,4 +75,12 @@ Route::group(['prefix' => '/test-model-bindings'], function () {
     })->name('pass_user');
 });
 
+Route::get('/connection', function () {
+    $all = \Illuminate\Support\Facades\DB::table('vouchers')->get();
+//    \Illuminate\Support\Facades\DB::disconnect('mysql');
+//    return $all;
+    dump($all);
+    sleep(5);
+});
+
 require __DIR__.'/auth.php';
