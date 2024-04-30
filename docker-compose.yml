@@ -45,5 +45,18 @@ services:
 #      replicas: 2
     volumes:
       - ./:/var/www/html
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    restart: always
+    environment:
+      - MONGO_INITDB_DATABASE=notification_system
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+    volumes:
+      - mongodb_data_store:/data/db
 volumes:
   redis-data-store:
+  mongodb_data_store:
+    driver: "local"

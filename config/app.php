@@ -180,6 +180,9 @@ return [
         // Intervention Image: processing image [END]
 
         \App\Providers\RiakServiceProvider::class,
+
+        // Them provider cho mongodb
+        \Jenssegers\Mongodb\MongodbServiceProvider::class,
     ],
 
     /*

@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/asm89/stack-cors" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
@@ -132,6 +133,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpspec/prophecy" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/predis/predis" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/http-client-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jean85/pretty-package-versions" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/mongodb/mongodb" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jenssegers/mongodb" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

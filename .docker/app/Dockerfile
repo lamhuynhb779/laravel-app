@@ -5,6 +5,11 @@ FROM php:7.4-fpm
 RUN apt update
 RUN apt install -y wget git unzip libpq-dev
 
+
+RUN apt-get install -y libcurl4-openssl-dev pkg-config libssl-dev
+RUN pecl install mongodb && docker-php-ext-enable mongodb
+RUN echo "extension=mongodb.so" >> /usr/local/etc/php/php.ini
+
 # Install Node.js 12
 RUN apt install -y npm \
   && npm install n -g \

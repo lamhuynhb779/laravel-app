@@ -41,3 +41,18 @@ Route::group(['middleware' => 'auth:api'], function () {
 Route::post('register', [RegistrationController::class, 'register']); // Customize own register controller
 Route::post('login', [LoginController::class, 'login']); // Login
 Route::post('logout', [LoginController::class, 'logout']); // Logout
+
+// Test connect mongodb
+Route::get('/mongo/ping', function () {
+    $connection = \Illuminate\Support\Facades\DB::connection('mongodb');
+    $msg = 'MongoDb is accessible!';
+    try {
+        $connection->command(['ping' => 1]);
+    } catch (Exception $e) {
+        $msg = 'MongoDb is not accessible. Error: '.$e->getMessage();
+    }
+    return ['msg' => $msg];
+});
+
+Route::post('/products', [\App\Http\Controllers\NotificationController::class, 'createProduct']);
+Route::get('/noti/users/{userId}', [\App\Http\Controllers\NotificationController::class, 'listNotiByUser']);
