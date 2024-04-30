@@ -56,3 +56,14 @@ Route::get('/mongo/ping', function () {
 
 Route::post('/products', [\App\Http\Controllers\NotificationController::class, 'createProduct']);
 Route::get('/noti/users/{userId}', [\App\Http\Controllers\NotificationController::class, 'listNotiByUser']);
+
+// KAFKA
+Route::get('kafka/producer', function () {
+    $service = new \App\Services\KafkaProducer();
+    return $service->runProducer();
+});
+
+Route::get('kafka/consumer', function () {
+    $service = new \App\Services\KafkaConsumer();
+    return $service->runConsumer();
+});

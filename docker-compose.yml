@@ -18,15 +18,15 @@ services:
       MYSQL_DATABASE: 'laraveldb'
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
       MYSQL_PASSWORD: ''
-  db_mysql8:
-    image: mysql:8.0
-    restart: always
-    ports:
-      - "3309:3306"
-    environment:
-      MYSQL_DATABASE: 'laraveldb8'
-      MYSQL_ALLOW_EMPTY_PASSWORD: 1
-      MYSQL_PASSWORD: ''
+#  db_mysql8:
+#    image: mysql:8.0
+#    restart: always
+#    ports:
+#      - "3309:3306"
+#    environment:
+#      MYSQL_DATABASE: 'laraveldb8'
+#      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+#      MYSQL_PASSWORD: ''
   redis:
     image: redis:latest
     ports:
@@ -56,7 +56,28 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=secret
     volumes:
       - mongodb_data_store:/data/db
+  zookeeper:
+    image: zookeeper
+    ports:
+      - "2181:2181"
+#    networks:
+#      - kafka-net
+  kafka:
+    image: bitnami/kafka
+    depends_on:
+      - zookeeper
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+    ports:
+      - "9092:9092"
+#    networks:
+#      - kafka-net
+
 volumes:
   redis-data-store:
   mongodb_data_store:
     driver: "local"
+#networks:
+#  kafka-net:
+#    driver: bridge
