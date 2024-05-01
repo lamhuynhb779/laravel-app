@@ -67,3 +67,14 @@ Route::get('kafka/consumer', function () {
     $service = new \App\Services\KafkaConsumer();
     return $service->runConsumer();
 });
+
+// RabbitMQ
+Route::post('rabbitmq/producer', function (Request $request) {
+    $service = new \App\Services\RabbitMQProducer();
+    return $service->runProducer($request->all());
+});
+
+Route::get('rabbitmq/consumer', function () {
+//    $service = new \App\Services\KafkaConsumer();
+//    return $service->runConsumer();
+});

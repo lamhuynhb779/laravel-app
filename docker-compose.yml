@@ -73,6 +73,16 @@ services:
       - "9092:9092"
 #    networks:
 #      - kafka-net
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
+      - ./.docker/rabbitmq/log/:/var/log/rabbitmq/
+#    networks:
+#      - rabbitmq_net
 
 volumes:
   redis-data-store:
