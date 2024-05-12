@@ -4,15 +4,16 @@ namespace App\Console\Commands\RabbitMQ;
 
 use Illuminate\Console\Command;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 
-class ConsumerCommand extends Command
+class ConsumerProcessFailedCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'consumer:consume_message';
+    protected $signature = 'consumer:process_failed';
 
     /**
      * The console command description.
@@ -41,28 +42,28 @@ class ConsumerCommand extends Command
         $connection = new AMQPStreamConnection('rabbitmq', 5672, 'guest', 'guest');
         $channel = $connection->channel();
 
-        $NOTI_QUEUE = 'test-queue-1';
-
-        $callback = function ($msg) {
-            $now = now()->toDateTimeString();
-            echo " [x] Received normal = {$msg->body} at $now \n";
-            $msg->ack();
-        };
-
-        // This tells RabbitMQ not to give more than one message to a worker at a time.
-        $channel->basic_qos(null, 1, false);
-
-        $channel->basic_consume($NOTI_QUEUE, '', false, false, false, false, $callback);
+        $channel->basic_consume(
+            'test-queue-1',
+            '',
+            false,
+            false,
+            false,
+            false,
+            function (AMQPMessage $msg) {
+                try {
+                    throw new \Exception("Processing failed!!! \n");
+                    $msg->ack();
+                } catch (\Exception $e) {
+                    echo $e->getMessage();
+                    // message will be added back to the queue
+                    $msg->nack(false, false);
+                }
+            }
+        );
 
         try {
-            echo "Consumer normal start ... \n";
-//            $channel->consume();
-            while(count($channel->callbacks)) {
-                // inspect the queue and call the corresponding callbacks
-                //passing the message as a parameter
-                $channel->wait();
-            }
-
+            echo "Consumer with processing error start ... \n";
+            $channel->consume();
         } catch (\Throwable $exception) {
             echo $exception->getMessage();
         }
