@@ -36,6 +36,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::delete('articles/{id}', [ArticleController::class, 'delete']); // Delete
 
     Route::post('/orders', [OrdersController::class, 'store']);
+
+    // Cloudinary service test
+    Route::post('cloudinary/upload/image', [\App\Http\Controllers\CloudinaryUploadController::class, 'uploadImage']);
 });
 
 Route::post('register', [RegistrationController::class, 'register']); // Customize own register controller
