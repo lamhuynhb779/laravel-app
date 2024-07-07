@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/orders', [OrdersController::class, 'store']);
 });
 
+Route::get('/public/articles/{id}', [ArticleController::class, 'show']); // Retrieve
+
 Route::post('register', [RegistrationController::class, 'register']); // Customize own register controller
 Route::post('login', [LoginController::class, 'login']); // Login
 Route::post('logout', [LoginController::class, 'logout']); // Logout
